@@ -6,6 +6,7 @@ import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
 import com.hwq.goatapiclientsdk.model.User;
 import com.hwq.goatapiclientsdk.utils.SignUtil;
+import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +18,7 @@ import java.util.Map;
  * @DateTime:2023/7/16 23:52
  * @Description: 调用第三方接口
  **/
+@Data
 public class GoatApiClient {
     private String accessKey;
     private String secretKey;
