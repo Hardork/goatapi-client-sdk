@@ -31,9 +31,9 @@ public class ApiServiceImpl extends BaseService implements ApiService {
     }
 
     @Override
-    public PoisonousChickenSoupResponse getPoisonousChickenSoup(GoatApiClient qiApiClient) throws ApiException {
+    public PoisonousChickenSoupResponse getPoisonousChickenSoup(GoatApiClient goatApiClient) throws ApiException {
         PoisonousChickenSoupRequest request = new PoisonousChickenSoupRequest();
-        return request(qiApiClient, request);
+        return request(goatApiClient, request);
     }
 
     @Override
@@ -42,8 +42,8 @@ public class ApiServiceImpl extends BaseService implements ApiService {
     }
 
     @Override
-    public RandomWallpaperResponse getRandomWallpaper(GoatApiClient qiApiClient, RandomWallpaperRequest request) throws ApiException {
-        return request(qiApiClient, request);
+    public RandomWallpaperResponse getRandomWallpaper(GoatApiClient goatApiClient, RandomWallpaperRequest request) throws ApiException {
+        return request(goatApiClient, request);
     }
 
     @Override
@@ -53,9 +53,9 @@ public class ApiServiceImpl extends BaseService implements ApiService {
     }
 
     @Override
-    public LoveResponse randomLoveTalk(GoatApiClient qiApiClient) throws ApiException {
+    public LoveResponse randomLoveTalk(GoatApiClient goatApiClient) throws ApiException {
         LoveRequest request = new LoveRequest();
-        return request(qiApiClient, request);
+        return request(goatApiClient, request);
     }
 
     @Override
@@ -64,13 +64,13 @@ public class ApiServiceImpl extends BaseService implements ApiService {
     }
 
     @Override
-    public ResultResponse horoscope(GoatApiClient qiApiClient, HoroscopeRequest request) throws ApiException {
-        return request(qiApiClient, request);
+    public ResultResponse horoscope(GoatApiClient goatApiClient, HoroscopeRequest request) throws ApiException {
+        return request(goatApiClient, request);
     }
 
     @Override
-    public ResultResponse getIpInfo(GoatApiClient qiApiClient, IpInfoRequest request) throws ApiException {
-        return request(qiApiClient, request);
+    public ResultResponse getIpInfo(GoatApiClient goatApiClient, IpInfoRequest request) throws ApiException {
+        return request(goatApiClient, request);
     }
 
     @Override
@@ -79,8 +79,8 @@ public class ApiServiceImpl extends BaseService implements ApiService {
     }
 
     @Override
-    public ResultResponse getWeatherInfo(GoatApiClient qiApiClient, WeatherRequest request) throws ApiException {
-        return request(qiApiClient, request);
+    public ResultResponse getWeatherInfo(GoatApiClient goatApiClient, WeatherRequest request) throws ApiException {
+        return request(goatApiClient, request);
     }
 
     @Override

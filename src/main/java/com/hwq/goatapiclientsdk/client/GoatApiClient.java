@@ -22,30 +22,10 @@ import java.util.Map;
 public class GoatApiClient {
     private String accessKey;
     private String secretKey;
-    private final String GATE_WAY_HOST = "http://localhost:8090";
     public GoatApiClient(String accessKey, String secretKey) {
         this.accessKey = accessKey;
         this.secretKey = secretKey;
     }
-    public String getNameByGet(String name) {
-        //可以单独传入http参数，这样参数会自动做URL编码，拼接在URL中
-        HashMap<String, Object> paramMap = new HashMap<>();
-        paramMap.put("name", name);
-        // 去访问携带参数网关
-        String res = HttpUtil.get(GATE_WAY_HOST + "/api/name/get", paramMap);
-        System.out.println(res);
-        return res;
-    }
-
-    public String getNameByPost(String name) {
-        HashMap<String, Object> paramMap = new HashMap<>();
-        paramMap.put("name", name);
-        String res = HttpUtil.post(GATE_WAY_HOST + "/api/name/post", paramMap);
-        System.out.println(res);
-        return "Post你的名字是:" + res;
-    }
-
-
 
     /**
      * 模拟开发者调用API
@@ -60,26 +40,5 @@ public class GoatApiClient {
         headerMap.put("timestamp", String.valueOf(System.currentTimeMillis() / 1000));
         headerMap.put("sign", SignUtil.getSign(body, secretKey));
         return headerMap;
-    }
-
-    public String getUserNameByPost(User user) {
-        String json = JSONUtil.toJsonStr(user);
-        String result2 = HttpRequest.post(GATE_WAY_HOST + "/api/name/user").addHeaders(getHeaderMap(json))
-                .body(json)
-                .execute().body();
-        System.out.println(result2);
-        return "Post用户的名字是:" + result2;
-    }
-
-    public Object invokeByGet(Object obj, String url) {
-        String json = JSONUtil.toJsonStr(obj);
-        Object res = HttpRequest.get(GATE_WAY_HOST + url).addHeaders(getHeaderMap(json)).body(json).execute().body();
-        return res;
-    }
-
-    public Object invokeByPost(Object obj, String url) {
-        String json = JSONUtil.toJsonStr(obj);
-        Object res = HttpRequest.post(GATE_WAY_HOST + url).addHeaders(getHeaderMap(json)).body(json).execute().body();
-        return res;
     }
 }

@@ -34,7 +34,7 @@ import java.util.Map;
 @Slf4j
 @Data
 public abstract class BaseService implements ApiService {
-    private GoatApiClient qiApiClient;
+    private GoatApiClient goatApiClient;
     /**
      * 网关HOST
      */
@@ -43,15 +43,15 @@ public abstract class BaseService implements ApiService {
     /**
      * 检查配置
      *
-     * @param qiApiClient qi api客户端
+     * @param goatApiClient goat api客户端
      * @throws ApiException 业务异常
      */
-    public void checkConfig(GoatApiClient qiApiClient) throws ApiException {
-        if (qiApiClient == null && this.getQiApiClient() == null) {
+    public void checkConfig(GoatApiClient goatApiClient) throws ApiException {
+        if (goatApiClient == null && this.getGoatApiClient() == null) {
             throw new ApiException(ErrorCode.NO_AUTH_ERROR, "请先配置密钥AccessKey/SecretKey");
         }
-        if (qiApiClient != null && !StrUtil.hasBlank(qiApiClient.getAccessKey(), qiApiClient.getSecretKey())) {
-            this.setQiApiClient(qiApiClient);
+        if (goatApiClient != null && !StrUtil.hasBlank(goatApiClient.getAccessKey(), goatApiClient.getSecretKey())) {
+            this.setGoatApiClient(goatApiClient);
         }
     }
 
@@ -111,7 +111,7 @@ public abstract class BaseService implements ApiService {
                 throw new ApiException(ErrorCode.OPERATION_ERROR, "不支持该请求");
             }
         }
-        return httpRequest.addHeaders(getHeaders(JSONUtil.toJsonStr(request), qiApiClient)).body(JSONUtil.toJsonStr(request.getRequestParams()));
+        return httpRequest.addHeaders(getHeaders(JSONUtil.toJsonStr(request), goatApiClient)).body(JSONUtil.toJsonStr(request.getRequestParams()));
     }
 
     /**
@@ -122,7 +122,7 @@ public abstract class BaseService implements ApiService {
      * @throws ApiException 业务异常
      */
     public <O, T extends ResultResponse> T res(BaseRequest<O, T> request) throws ApiException {
-        if (qiApiClient == null || StrUtil.hasBlank(qiApiClient.getAccessKey(), qiApiClient.getSecretKey())) {
+        if (goatApiClient == null || StrUtil.hasBlank(goatApiClient.getAccessKey(), goatApiClient.getSecretKey())) {
             throw new ApiException(ErrorCode.NO_AUTH_ERROR, "请先配置密钥AccessKey/SecretKey");
         }
         T rsp;
@@ -188,16 +188,16 @@ public abstract class BaseService implements ApiService {
      * 获取请求头
      *
      * @param body        请求体
-     * @param qiApiClient qi api客户端
+     * @param goatApiClient goat api客户端
      * @return {@link Map}<{@link String}, {@link String}>
      */
-    private Map<String, String> getHeaders(String body, GoatApiClient qiApiClient) {
+    private Map<String, String> getHeaders(String body, GoatApiClient goatApiClient) {
         Map<String, String> hashMap = new HashMap<>(4);
-        hashMap.put("accessKey", qiApiClient.getAccessKey());
+        hashMap.put("accessKey", goatApiClient.getAccessKey());
         String encodedBody = SecureUtil.md5(body);
         hashMap.put("body", encodedBody);
         hashMap.put("timestamp", String.valueOf(System.currentTimeMillis() / 1000));
-        hashMap.put("sign", SignUtil.getSign(encodedBody, qiApiClient.getSecretKey()));
+        hashMap.put("sign", SignUtil.getSign(encodedBody, goatApiClient.getSecretKey()));
         return hashMap;
     }
 
@@ -211,8 +211,8 @@ public abstract class BaseService implements ApiService {
     }
 
     @Override
-    public <O, T extends ResultResponse> T request(GoatApiClient qiApiClient, BaseRequest<O, T> request) throws ApiException {
-        checkConfig(qiApiClient);
+    public <O, T extends ResultResponse> T request(GoatApiClient goatApiClient, BaseRequest<O, T> request) throws ApiException {
+        checkConfig(goatApiClient);
         return request(request);
     }
 }

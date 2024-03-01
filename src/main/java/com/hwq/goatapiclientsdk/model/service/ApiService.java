@@ -31,12 +31,12 @@ public interface ApiService {
     /**
      * 通用请求
      *
-     * @param qiApiClient qi api客户端
+     * @param goatApiClient goat api客户端
      * @param request     要求
      * @return {@link T}
      * @throws ApiException 业务异常
      */
-    <O, T extends ResultResponse> T request(GoatApiClient qiApiClient, BaseRequest<O, T> request) throws ApiException;
+    <O, T extends ResultResponse> T request(GoatApiClient goatApiClient, BaseRequest<O, T> request) throws ApiException;
 
 
     /**
@@ -50,11 +50,11 @@ public interface ApiService {
     /**
      * 喝毒鸡汤
      *
-     * @param qiApiClient qi api客户端
+     * @param goatApiClient goat api客户端
      * @return {@link PoisonousChickenSoupResponse}
      * @throws ApiException 业务异常
      */
-    PoisonousChickenSoupResponse getPoisonousChickenSoup(GoatApiClient qiApiClient) throws ApiException;
+    PoisonousChickenSoupResponse getPoisonousChickenSoup(GoatApiClient goatApiClient) throws ApiException;
 
     /**
      * 获取随机壁纸
@@ -68,12 +68,12 @@ public interface ApiService {
     /**
      * 获取随机壁纸
      *
-     * @param qiApiClient qi api客户端
+     * @param goatApiClient goat api客户端
      * @param request     要求
      * @return {@link RandomWallpaperResponse}
      * @throws ApiException 业务异常
      */
-    RandomWallpaperResponse getRandomWallpaper(GoatApiClient qiApiClient, RandomWallpaperRequest request) throws ApiException;
+    RandomWallpaperResponse getRandomWallpaper(GoatApiClient goatApiClient, RandomWallpaperRequest request) throws ApiException;
 
     /**
      * 随意情话
@@ -86,11 +86,11 @@ public interface ApiService {
     /**
      * 随意情话
      *
-     * @param qiApiClient qi api客户端
+     * @param goatApiClient goat api客户端
      * @return {@link LoveResponse}
      * @throws ApiException 业务异常
      */
-    LoveResponse randomLoveTalk(GoatApiClient qiApiClient) throws ApiException;
+    LoveResponse randomLoveTalk(GoatApiClient goatApiClient) throws ApiException;
 
     /**
      * 星座运势
@@ -104,22 +104,22 @@ public interface ApiService {
     /**
      * 星座运势
      *
-     * @param qiApiClient qi api客户端
+     * @param goatApiClient goat api客户端
      * @param request     要求
      * @return {@link ResultResponse}
      * @throws ApiException 业务异常
      */
-    ResultResponse horoscope(GoatApiClient qiApiClient, HoroscopeRequest request) throws ApiException;
+    ResultResponse horoscope(GoatApiClient goatApiClient, HoroscopeRequest request) throws ApiException;
 
     /**
      * 获取ip信息
      *
-     * @param qiApiClient qi api客户端
+     * @param goatApiClient goat api客户端
      * @param request     要求
      * @return {@link ResultResponse}
      * @throws ApiException 业务异常
      */
-    ResultResponse getIpInfo(GoatApiClient qiApiClient, IpInfoRequest request) throws ApiException;
+    ResultResponse getIpInfo(GoatApiClient goatApiClient, IpInfoRequest request) throws ApiException;
 
     /**
      * 获取ip信息
@@ -133,12 +133,12 @@ public interface ApiService {
     /**
      * 获取天气信息
      *
-     * @param qiApiClient qi api客户端
+     * @param goatApiClient goat api客户端
      * @param request     要求
      * @return {@link ResultResponse}
      * @throws ApiException 业务异常
      */
-    ResultResponse getWeatherInfo(GoatApiClient qiApiClient, WeatherRequest request) throws ApiException;
+    ResultResponse getWeatherInfo(GoatApiClient goatApiClient, WeatherRequest request) throws ApiException;
 
     /**
      * 获取天气信息
